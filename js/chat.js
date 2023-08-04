@@ -79,7 +79,7 @@ function insertPresetText() {
 }
 
 function initcode() {
-    console['\x6c\x6f\x67']("\u672c\u7ad9\u4ee3\u7801\u4fee\u6539\u81ea\x68\x74\x74\x70\x3a\x2f\x2f\x67\x69\x74\x68\x75\x62\x2e\x63\x6f\x6d\x2f\x64\x69\x72\x6b\x31\x39\x38\x33\x2f\x63\x68\x61\x74\x67\x70\x74");
+    console['\x6c\x6f\x67']("Original site : http://github.com/dirk1983/chatgpt");
 }
 
 function copyToClipboard(text) {
@@ -94,7 +94,7 @@ function copyToClipboard(text) {
 
 function copycode(obj) {
     copyToClipboard($(obj).closest('code').clone().children('button').remove().end().text());
-    layer.msg("复制完成！");
+    layer.msg("コピー完了！");
 }
 
 function autoresize() {
@@ -141,7 +141,7 @@ $(document).ready(function () {
             $("#kw-target").val("");
             $("#kw-target").attr("disabled", false);
             autoresize();
-            $("#ai-btn").html('<i class="iconfont icon-wuguan"></i>发送');
+            $("#ai-btn").html('<i class="iconfont icon-wuguan"></i>送信');
             if (!isMobile()) $("#kw-target").focus();
         } else {
             send_post();
@@ -152,30 +152,30 @@ $(document).ready(function () {
     $("#clean").click(function () {
         $("#article-wrapper").html("");
         contextarray = [];
-        layer.msg("清理完毕！");
+        layer.msg("リセット完了！");
         return false;
     });
 
     $("#showlog").click(function () {
-        let btnArry = ['已阅'];
-        layer.open({ type: 1, title: '全部对话日志', area: ['80%', '80%'], shade: 0.5, scrollbar: true, offset: [($(window).height() * 0.1), ($(window).width() * 0.1)], content: '<iframe src="chat.txt?' + new Date().getTime() + '" style="width: 100%; height: 100%;"></iframe>', btn: btnArry });
+        let btnArry = ['既読'];
+        layer.open({ type: 1, title: '全ログ', area: ['80%', '80%'], shade: 0.5, scrollbar: true, offset: [($(window).height() * 0.1), ($(window).width() * 0.1)], content: '<iframe src="chat.txt?' + new Date().getTime() + '" style="width: 100%; height: 100%;"></iframe>', btn: btnArry });
         return false;
     });
 
     function send_post() {
         if (($('#key').length) && ($('#key').val().length != 51)) {
-            layer.msg("请输入正确的API-KEY", { icon: 5 });
+            layer.msg("正しいAPI-KEYをお願いいたします。", { icon: 5 });
             return;
         }
 
         var prompt = $("#kw-target").val();
 
         if (prompt == "") {
-            layer.msg("请输入您的问题", { icon: 5 });
+            layer.msg("質問が空です", { icon: 5 });
             return;
         }
 
-        var loading = layer.msg('正在组织语言，请稍等片刻...', {
+        var loading = layer.msg('考え中...', {
             icon: 16,
             shade: 0.4,
             time: false //取消自动关闭
@@ -184,7 +184,7 @@ $(document).ready(function () {
         function draw() {
             $.get("getpicture.php", function (data) {
                 layer.close(loading);
-                layer.msg("处理成功！");
+                layer.msg("処理完了！");
                 answer = randomString(16);
                 $("#article-wrapper").append('<li class="article-title" id="q' + answer + '"><pre></pre></li>');
                 for (var j = 0; j < prompt.length; j++) {
@@ -194,7 +194,7 @@ $(document).ready(function () {
                 $("#kw-target").val("");
                 $("#kw-target").attr("disabled", false);
                 autoresize();
-                $("#ai-btn").html('<i class="iconfont icon-wuguan"></i>发送');
+                $("#ai-btn").html('<i class="iconfont icon-wuguan"></i>送信');
                 if (!isMobile()) $("#kw-target").focus();
             }, "json");
         }
@@ -208,34 +208,34 @@ $(document).ready(function () {
                 var errcode = getCookie("errcode");
                 switch (errcode) {
                     case "invalid_api_key":
-                        layer.msg("API-KEY不合法");
+                        layer.msg("API-KEYが無効です");
                         break;
                     case "context_length_exceeded":
-                        layer.msg("问题和上下文长度超限，请重新提问");
+                        layer.msg("文が長すぎました。");
                         break;
                     case "rate_limit_reached":
-                        layer.msg("同时访问用户过多，请稍后再试");
+                        layer.msg("同時にアクセスするユーザーが多すぎます、後で再試行してください");
                         break;
                     case "access_terminated":
-                        layer.msg("违规使用，API-KEY被封禁");
+                        layer.msg("不正な使用、API-KEYがブロックされました");
                         break;
                     case "no_api_key":
-                        layer.msg("未提供API-KEY");
+                        layer.msg("API-KEYが提供されていません");
                         break;
                     case "insufficient_quota":
-                        layer.msg("API-KEY余额不足");
+                        layer.msg("API-KEYの残高が不足しています");
                         break;
                     case "account_deactivated":
-                        layer.msg("账户已禁用");
+                        layer.msg("アカウントが無効化されました");
                         break;
                     case "model_overloaded":
-                        layer.msg("OpenAI模型超负荷，请重新发起请求");
+                        layer.msg("OpenAIモデルが過負荷、もう一度リクエストを行ってください");
                         break;
                     case null:
-                        layer.msg("OpenAI服务器访问超时或未知类型错误");
+                        layer.msg("OpenAIサーバーへのアクセスタイムアウトまたは未知のエラータイプ");
                         break;
                     default:
-                        layer.msg("OpenAI服务器故障，错误类型：" + errcode);
+                        layer.msg("OpenAIサーバーの故障、エラータイプ:" + errcode);
                 }
                 es.close();
                 if (!isMobile()) $("#kw-target").focus();
@@ -248,7 +248,7 @@ $(document).ready(function () {
                     $("#kw-target").attr("disabled", true);
                     autoresize();
                     $("#ai-btn").html('<i class="iconfont icon-wuguan"></i>中止');
-                    layer.msg("处理成功！");
+                    layer.msg("処理完了！");
                     isstarted = false;
                     answer = randomString(16);
                     $("#article-wrapper").append('<li class="article-title" id="q' + answer + '"><pre></pre></li>');
@@ -262,7 +262,7 @@ $(document).ready(function () {
                     timer = setInterval(() => {
                         let newalltext = alltext;
                         let islastletter = false;
-                        //有时服务器错误地返回\\n作为换行符，尤其是包含上下文的提问时，这行代码可以处理一下。
+                        //有时服务器错误地返回\\n作为换行符,尤其是包含上下文的提问时,这行代码可以处理一下。
                         if (newalltext.split("\n").length == 1) {
                             newalltext = newalltext.replace(/\\n/g, '\n');
                         }
@@ -282,7 +282,7 @@ $(document).ready(function () {
                                 $("#kw-target").val("");
                                 $("#kw-target").attr("disabled", false);
                                 autoresize();
-                                $("#ai-btn").html('<i class="iconfont icon-wuguan"></i>发送');
+                                $("#ai-btn").html('<i class="iconfont icon-wuguan"></i>送信');
                                 if (!isMobile()) $("#kw-target").focus();
                             }
                         }
@@ -305,7 +305,7 @@ $(document).ready(function () {
                         if (islastletter) MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
                         //if (document.querySelector("[id='" + answer + "']" + " pre code")) document.querySelectorAll("[id='" + answer + "']" + " pre code").forEach(el => { hljs.highlightElement(el); });
                         $("#" + answer + " pre code").each(function () {
-                            $(this).html("<button onclick='copycode(this);' class='codebutton'>复制</button>" + $(this).html());
+                            $(this).html("<button onclick='copycode(this);' class='codebutton'>コピー</button>" + $(this).html());
                         });
                         document.getElementById("article-wrapper").scrollTop = 100000;
                     }, 30);
@@ -313,7 +313,7 @@ $(document).ready(function () {
                 if (event.data == "[DONE]") {
                     isalltext = true;
                     contextarray.push([prompt, alltext]);
-                    contextarray = contextarray.slice(-5); //只保留最近5次对话作为上下文，以免超过最大tokens限制
+                    contextarray = contextarray.slice(-5); //只保留最近5次对话作为上下文,以免超过最大tokens限制
                     es.close();
                     return;
                 }
@@ -329,7 +329,7 @@ $(document).ready(function () {
         }
 
 
-        if (prompt.charAt(0) === '画') {
+        if (prompt.charAt(0) === '絵') {
             $.ajax({
                 cache: true,
                 type: "POST",
@@ -349,7 +349,8 @@ $(document).ready(function () {
                 cache: true,
                 type: "POST",
                 url: "setsession.php",
-                data: {
+                data: {                    
+                    system_role: document.getElementById('system').dataset.hidden,
                     message: prompt,
                     context: (!($("#keep").length) || ($("#keep").prop("checked"))) ? JSON.stringify(contextarray) : '[]',
                     key: ($("#key").length) ? ($("#key").val()) : '',

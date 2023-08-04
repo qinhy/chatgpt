@@ -1,6 +1,6 @@
 <?php
 $context = json_decode($_POST['context'] ?: "[]") ?: [];
-if (mb_substr($_POST["message"], 0, 1, 'UTF-8') === '画') {
+if (mb_substr($_POST["message"], 0, 1, 'UTF-8') === '絵') {
     $postData = [
         "prompt" => $_POST['message'],
         "n" => 1,
@@ -12,7 +12,9 @@ if (mb_substr($_POST["message"], 0, 1, 'UTF-8') === '画') {
         "temperature" => 0,
         "stream" => true,
         "messages" => [],
-    ];
+    ];    
+    $postData['messages'][] = ['role' => 'system', 'content' => $_POST["system_role"]];
+    
     if (!empty($context)) {
         $context = array_slice($context, -5);
         foreach ($context as $message) {
@@ -23,6 +25,7 @@ if (mb_substr($_POST["message"], 0, 1, 'UTF-8') === '画') {
     $postData['messages'][] = ['role' => 'user', 'content' => $_POST['message']];
 }
 $postData = json_encode($postData);
+// echo $postData;
 session_start();
 $_SESSION['data'] = $postData;
 if ((isset($_POST['key'])) && (!empty($_POST['key']))) {

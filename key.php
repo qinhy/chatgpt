@@ -61,7 +61,7 @@ if ((isset($_SESSION['admin'])) && ($_SESSION['admin'] == true)) {
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>API_KEY配置信息</title>
+        <title>API_KEY設定情報</title>
         <script src="js/jquery-3.6.4.min.js"></script>
         <script src="js/layer.min.js" type="application/javascript"></script>
         <style>
@@ -114,9 +114,9 @@ if ((isset($_SESSION['admin'])) && ($_SESSION['admin'] == true)) {
 
     <body>
         <div class="container">
-            <h1>API_KEY配置信息</h1>
-            <textarea placeholder="请按一行一回车的方式录入" id="tt"><?php echo $content; ?></textarea>
-            <button class="btn" onclick="checkit();">验证有效性</button> <button class="btn" onclick="saveit();">保存当前设置</button>
+            <h1>API_KEY設定情報</h1>
+            <textarea placeholder="1行に1つの形式で入力してください" id="tt"><?php echo $content; ?></textarea>
+            <button class="btn" onclick="checkit();">有効性を確認する</button> <button class="btn" onclick="saveit();">現在の設定を保存</button>
         </div>
     </body>
     <script>
@@ -129,16 +129,16 @@ if ((isset($_SESSION['admin'])) && ($_SESSION['admin'] == true)) {
                     action: "save",
                 },
                 success: function(results) {
-                    layer.msg('保存成功，您可以刷新本网页确认');
+                    layer.msg('保存に成功しました。このページを更新して確認できます');
                 }
             });
         }
 
         function checkit() {
-            var loading = layer.msg('验证中，这需要一些时间，请稍候...', {
+            var loading = layer.msg('確認中、これには少し時間がかかりますので、お待ちください...', {
                 icon: 16,
                 shade: 0.4,
-                time: false //取消自动关闭
+                time: false //自動閉鎖をキャンセルする
             });
             $.ajax({
                 type: "POST",
@@ -150,7 +150,7 @@ if ((isset($_SESSION['admin'])) && ($_SESSION['admin'] == true)) {
                 success: function(results) {
                     $("#tt").val(results);
                     layer.close(loading);
-                    layer.msg('验证完毕，无效API_KEY已被删除，请记得点保存设置。');
+                    layer.msg('検証が完了しました。無効なAPI_KEYは削除されました。設定の保存を忘れないでください。');
                 }
             });
         }
@@ -161,23 +161,23 @@ if ((isset($_SESSION['admin'])) && ($_SESSION['admin'] == true)) {
 <?php
     exit;
 }
-// 定义用户名和密码常量 
+// ユーザー名とパスワードの定数を定義する
 define('USERNAME', 'admin');
 define('PASSWORD', 'admin@2023');
-// 判断是否提交了表单
+// フォームが送信されたかどうかを判断する
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    // 获取表单提交的用户名和密码
+    // フォームから送信されたユーザー名とパスワードを取得する
     $username = $_POST['username'];
     $password = $_POST['password'];
-    // 判断用户名和密码是否正确
+    // ユーザー名とパスワードが正しいかどうかを判断する
     if ($username == USERNAME && $password == PASSWORD) {
-        // 登录成功，跳转到首页
+        // ログインに成功し、ホームページにリダイレクトします
         $_SESSION['admin'] = true;
         header("Location: key.php");
         exit;
     } else {
-        // 登录失败，显示错误信息
-        $error = '用户名或密码错误';
+        // ログインに失敗し、エラーメッセージを表示します
+        $error = 'ユーザー名またはパスワードが間違っています';
         $_SESSION['admin'] = false;
     }
 }
@@ -188,7 +188,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>登录页面</title>
+    <title>ログインページ</title>
     <style>
         body {
             background-color: #f2f2f2;
@@ -255,10 +255,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         </script>
     <?php endif; ?>
     <form method="post">
-        <h1>API_KEY管理后台</h1>
-        <p> <label>用户名：</label> <input type="text" name="username"> </p>
-        <p> <label>密码：</label> <input type="password" name="password"> </p>
-        <p style="text-align:center"> <button type="submit">登录</button> </p>
+        <h1>API_KEY管理バックエンド</h1>
+        <p> <label>ユーザー名：</label> <input type="text" name="username"> </p>
+        <p> <label>パスワード：</label> <input type="password" name="password"> </p>
+        <p style="text-align:center"> <button type="submit">ログイン</button> </p>
     </form>
 </body>
 

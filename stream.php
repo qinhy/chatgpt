@@ -7,7 +7,7 @@ session_start();
 $postData = $_SESSION['data'];
 $responsedata = "";
 $ch = curl_init();
-$OPENAI_API_KEY = "";
+$OPENAI_API_KEY = "sk-";
 
 //下面这段代码是从文件中获取apikey，采用轮询方式调用。配置apikey请访问key.php
 $content = "<?php header('HTTP/1.1 404 Not Found');exit; ?>\n";
