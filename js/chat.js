@@ -245,7 +245,7 @@ $(document).ready(function () {
             es.onmessage = function (event) {
                 if (isstarted) {
                     layer.close(loading);
-                    $("#kw-target").val("请耐心等待AI把话说完……");
+                    $("#kw-target").val("少々お待ちください…");
                     $("#kw-target").attr("disabled", true);
                     autoresize();
                     $("#ai-btn").html('<i class="iconfont icon-wuguan"></i>中止');
