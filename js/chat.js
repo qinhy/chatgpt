@@ -200,6 +200,7 @@ $(document).ready(function () {
         }
         function streaming() {
             var es = new EventSource("stream.php");
+            console.log(es)
             var isstarted = true;
             var alltext = "";
             var isalltext = false;

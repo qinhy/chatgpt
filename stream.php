@@ -5,32 +5,33 @@ header("X-Accel-Buffering: no");
 set_time_limit(0);
 session_start();
 $postData = $_SESSION['data'];
+$postData_j = json_decode($postData);
 $responsedata = "";
 $ch = curl_init();
-$OPENAI_API_KEY = "sk-";
+$OPENAI_API_KEY = getenv('OPENAI_API_KEY');
 
 //下面这段代码是从文件中获取apikey，采用轮询方式调用。配置apikey请访问key.php
 $content = "<?php header('HTTP/1.1 404 Not Found');exit; ?>\n";
-$line = 0;
-$handle = fopen(__DIR__ . "/apikey.php", "r") or die("Writing file failed.");
-if ($handle) {
-    while (($buffer = fgets($handle)) !== false) {
-        $line++;
-        if ($line == 2) {
-            $OPENAI_API_KEY = str_replace("\n", "", $buffer);
-        }
-        if ($line > 2) {
-            $content .= $buffer;
-        }
-    }
-    fclose($handle);
-}
-$content .= $OPENAI_API_KEY . "\n";
-$handle = fopen(__DIR__ . "/apikey.php", "w") or die("Writing file failed.");
-if ($handle) {
-    fwrite($handle, $content);
-    fclose($handle);
-}
+// $line = 0;
+// $handle = fopen(__DIR__ . "/apikey.php", "r") or die("Writing file failed.");
+// if ($handle) {
+//     while (($buffer = fgets($handle)) !== false) {
+//         $line++;
+//         if ($line == 2) {
+//             $OPENAI_API_KEY = str_replace("\n", "", $buffer);
+//         }
+//         if ($line > 2) {
+//             $content .= $buffer;
+//         }
+//     }
+//     fclose($handle);
+// }
+// $content .= $OPENAI_API_KEY . "\n";
+// $handle = fopen(__DIR__ . "/apikey.php", "w") or die("Writing file failed.");
+// if ($handle) {
+//     fwrite($handle, $content);
+//     fclose($handle);
+// }
 
 //如果首页开启了输入自定义apikey，则采用用户输入的apikey
 if (isset($_SESSION['key'])) {
@@ -48,7 +49,8 @@ setcookie("errmsg", "");
 
 $callback = function ($ch, $data) {
     global $responsedata;
-    $complete = json_decode($data);
+
+    $complete = json_decode($data);    
     if (isset($complete->error)) {
         setcookie("errcode", $complete->error->code);
         setcookie("errmsg", $data);
@@ -69,8 +71,21 @@ $callback = function ($ch, $data) {
         }
         $responsedata = $data;
     } else {
-        echo $data;
         $responsedata .= $data;
+        $complete = json_decode($responsedata, true); 
+        if($complete && isset($complete['choices'][0]['message']['content'])){
+            $data = $complete['choices'][0]['message']['content'];
+            $temp = 'data: {"id":"","object":"","created":0,"model":"","choices":[{"index":0,"delta":{"content":"'.$data;
+            $data =  $temp.'"},"finish_reason":"stop"}]}'."\n\n";
+            echo $data;
+            echo 'data: [DONE]'."\n\n";
+        }
+        else{
+            echo $data;
+            $myfile = fopen(__DIR__ . "/chatlog.php", "a") or die("Writing file failed.");
+            fwrite($myfile, $data);
+            fclose($myfile);
+        }
         flush();
     }
     return strlen($data);
@@ -93,21 +108,23 @@ curl_setopt($ch, CURLOPT_AUTOREFERER, true); // 自动设置Referer
 curl_exec($ch);
 curl_close($ch);
 
-$answer = "";
-if (substr(trim($responsedata), -6) == "[DONE]") {
-    $responsedata = substr(trim($responsedata), 0, -6) . "{";
-}
-$responsearr = explode("}\n\ndata: {", $responsedata);
+// echo $responsedata;
 
-foreach ($responsearr as $msg) {
-    $contentarr = json_decode("{" . trim($msg) . "}", true);
-    if (isset($contentarr['choices'][0]['delta']['content'])) {
-        $answer .= $contentarr['choices'][0]['delta']['content'];
-    }
-}
-$questionarr = json_decode($postData, true);
-$filecontent = $_SERVER["REMOTE_ADDR"] . " | " . date("Y-m-d H:i:s") . "\n";
-$filecontent .= "Q:" . end($questionarr['messages'])['content'] .  "\nA:" . trim($answer) . "\n----------------\n";
-$myfile = fopen(__DIR__ . "/chatlog.php", "a") or die("Writing file failed.");
-fwrite($myfile, $filecontent);
-fclose($myfile);
+// $answer = "";
+// if (substr(trim($responsedata), -6) == "[DONE]") {
+//     $responsedata = substr(trim($responsedata), 0, -6) . "{";
+// }
+// $responsearr = explode("}\n\ndata: {", $responsedata);
+
+// foreach ($responsearr as $msg) {
+//     $contentarr = json_decode("{" . trim($msg) . "}", true);
+//     if (isset($contentarr['choices'][0]['delta']['content'])) {
+//         $answer .= $contentarr['choices'][0]['delta']['content'];
+//     }
+// }
+// $questionarr = json_decode($postData, true);
+// $filecontent = $_SERVER["REMOTE_ADDR"] . " | " . date("Y-m-d H:i:s") . "\n";
+// $filecontent .= "Q:" . end($questionarr['messages'])['content'] .  "\nA:" . trim($answer) . "\n----------------\n";
+// $myfile = fopen(__DIR__ . "/chatlog.php", "a") or die("Writing file failed.");
+// fwrite($myfile, $responsedata);
+// fclose($myfile);

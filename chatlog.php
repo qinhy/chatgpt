@@ -401,3 +401,475 @@ A:こんにちは、私はあなたのサッカーコメンテーターとして
 Q:自己紹介お願いいたします。
 A:はじめまして、私はAIアシスタントの医師です。日本語と英語の両方を使って、患者の診断をサポートすることができます。どのようにお手伝いできますか？
 ----------------
+::1 | 2023-08-09 08:50:16
+Q:hello
+A:
+----------------
+::1 | 2023-08-09 08:50:25
+Q:hello
+A:
+----------------
+::1 | 2023-08-09 08:50:38
+Q:hi
+A:
+----------------
+::1 | 2023-08-09 08:51:36
+Q:hi
+A:
+----------------
+::1 | 2023-08-09 08:53:40
+Q:hi
+A:
+----------------
+::1 | 2023-08-09 08:53:57
+Q:hi
+A:
+----------------
+::1 | 2023-08-09 08:54:01
+Q:hi
+A:
+----------------
+::1 | 2023-08-09 08:55:01
+Q:hi
+A:
+----------------
+::1 | 2023-08-09 08:55:03
+Q:hi
+A:
+----------------
+::1 | 2023-08-09 08:55:04
+Q:hi
+A:
+----------------
+::1 | 2023-08-09 08:55:14
+Q:hi
+A:
+----------------
+::1 | 2023-08-09 08:56:09
+Q:hi
+A:
+----------------
+::1 | 2023-08-09 08:57:17
+Q:hi
+A:
+----------------
+::1 | 2023-08-09 08:57:52
+Q:hi
+A:
+----------------
+::1 | 2023-08-09 09:00:32
+Q:hi
+A:こんにちは！どのようにお手伝いできますか？
+----------------
+{
+  "id": "chatcmpl-7lXmITZtnEGcLdaOe5YCq6zeeGd4c",
+  "object": "chat.completion",
+  "created": 1691565614,
+  "model": "gpt-3.5-turbo-0613",
+  "choices": [
+    {
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "こんにちは！どのようにお手伝いできますか？"
+      },
+      "finish_reason": "stop"
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 41,
+    "completion_tokens": 17,
+    "total_tokens": 58
+  }
+}
+{
+  "id": "chatcmpl-7lXobIx4LDt1p9vJu3tBKmjsx3fjy",
+  "object": "chat.completion",
+  "created": 1691565757,
+  "model": "gpt-3.5-turbo-0613",
+  "choices": [
+    {
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "こんにちは！どのようにお手伝いできますか？"
+      },
+      "finish_reason": "stop"
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 41,
+    "completion_tokens": 17,
+    "total_tokens": 58
+  }
+}
+data: {"id":"chatcmpl-7lXwBATn3AL0x7hnNdlowQmulaM3j","object":"chat.completion.chunk","created":1691566227,"model":"gpt-3.5-turbo-0613","choices":[{"index":0,"delta":{"role":"assistant","content":""},"finish_reason":null}]}
+
+data: {"id":"chatcmpl-7lXwBATn3AL0x7hnNdlowQmulaM3j","object":"chat.completion.chunk","created":1691566227,"model":"gpt-3.5-turbo-0613","choices":[{"index":0,"delta":{"content":"こんにちは"},"finish_reason":null}]}
+
+data: {"id":"chatcmpl-7lXwBATn3AL0x7hnNdlowQmulaM3j","object":"chat.completion.chunk","created":1691566227,"model":"gpt-3.5-turbo-0613","choices":[{"index":0,"delta":{"content":"！"},"finish_reason":null}]}
+
+data: {"id":"chatcmpl-7lXwBATn3AL0x7hnNdlowQmulaM3j","object":"chat.completion.chunk","created":1691566227,"model":"gpt-3.5-turbo-0613","choices":[{"index":0,"delta":{"content":"ど"},"finish_reason":null}]}
+
+data: {"id":"chatcmpl-7lXwBATn3AL0x7hnNdlowQmulaM3j","object":"chat.completion.chunk","created":1691566227,"model":"gpt-3.5-turbo-0613","choices":[{"index":0,"delta":{"content":"の"},"finish_reason":null}]}
+
+data: {"id":"chatcmpl-7lXwBATn3AL0x7hnNdlowQmulaM3j","object":"chat.completion.chunk","created":1691566227,"model":"gpt-3.5-turbo-0613","choices":[{"index":0,"delta":{"content":"よ"},"finish_reason":null}]}
+
+data: {"id":"chatcmpl-7lXwBATn3AL0x7hnNdlowQmulaM3j","object":"chat.completion.chunk","created":1691566227,"model":"gpt-3.5-turbo-0613","choices":[{"index":0,"delta":{"content":"う"},"finish_reason":null}]}
+
+data: {"id":"chatcmpl-7lXwBATn3AL0x7hnNdlowQmulaM3j","object":"chat.completion.chunk","created":1691566227,"model":"gpt-3.5-turbo-0613","choices":[{"index":0,"delta":{"content":"に"},"finish_reason":null}]}
+
+data: {"id":"chatcmpl-7lXwBATn3AL0x7hnNdlowQmulaM3j","object":"chat.completion.chunk","created":1691566227,"model":"gpt-3.5-turbo-0613","choices":[{"index":0,"delta":{"content":"お"},"finish_reason":null}]}
+
+data: {"id":"chatcmpl-7lXwBATn3AL0x7hnNdlowQmulaM3j","object":"chat.completion.chunk","created":1691566227,"model":"gpt-3.5-turbo-0613","choices":[{"index":0,"delta":{"content":"手"},"finish_reason":null}]}
+
+data: {"id":"chatcmpl-7lXwBATn3AL0x7hnNdlowQmulaM3j","object":"chat.completion.chunk","created":1691566227,"model":"gpt-3.5-turbo-0613","choices":[{"index":0,"delta":{"content":"伝"},"finish_reason":null}]}
+
+data: {"id":"chatcmpl-7lXwBATn3AL0x7hnNdlowQmulaM3j","object":"chat.completion.chunk","created":1691566227,"model":"gpt-3.5-turbo-0613","choices":[{"index":0,"delta":{"content":"い"},"finish_reason":null}]}
+
+data: {"id":"chatcmpl-7lXwBATn3AL0x7hnNdlowQmulaM3j","object":"chat.completion.chunk","created":1691566227,"model":"gpt-3.5-turbo-0613","choices":[{"index":0,"delta":{"content":"で"},"finish_reason":null}]}
+
+data: {"id":"chatcmpl-7lXwBATn3AL0x7hnNdlowQmulaM3j","object":"chat.completion.chunk","created":1691566227,"model":"gpt-3.5-turbo-0613","choices":[{"index":0,"delta":{"content":"き"},"finish_reason":null}]}
+
+data: {"id":"chatcmpl-7lXwBATn3AL0x7hnNdlowQmulaM3j","object":"chat.completion.chunk","created":1691566227,"model":"gpt-3.5-turbo-0613","choices":[{"index":0,"delta":{"content":"ます"},"finish_reason":null}]}
+
+data: {"id":"chatcmpl-7lXwBATn3AL0x7hnNdlowQmulaM3j","object":"chat.completion.chunk","created":1691566227,"model":"gpt-3.5-turbo-0613","choices":[{"index":0,"delta":{"content":"か"},"finish_reason":null}]}
+
+data: {"id":"chatcmpl-7lXwBATn3AL0x7hnNdlowQmulaM3j","object":"chat.completion.chunk","created":1691566227,"model":"gpt-3.5-turbo-0613","choices":[{"index":0,"delta":{"content":"？"},"finish_reason":null}]}
+
+data: {"id":"chatcmpl-7lXwBATn3AL0x7hnNdlowQmulaM3j","object":"chat.completion.chunk","created":1691566227,"model":"gpt-3.5-turbo-0613","choices":[{"index":0,"delta":{},"finish_reason":"stop"}]}
+
+data: {::1 | 2023-08-09 09:30:58
+Q:hi
+A:こんにちは！どのようにお手伝いできますか？
+----------------
+::1 | 2023-08-09 09:31:09
+Q:hi
+A:こんにちは！どのようにお手伝いできますか？
+----------------
+::1 | 2023-08-09 09:31:36
+Q:hi
+A:こんにちは！どのようにお手伝いできますか？
+----------------
+::1 | 2023-08-09 09:31:40
+Q:hi
+A:こんにちは！どのようにお手伝いできますか？
+----------------
+::1 | 2023-08-09 09:32:29
+Q:hi
+A:こんにちは！どのようにお手伝いできますか？
+----------------
+::1 | 2023-08-09 09:34:15
+Q:hi
+A:こんにちは！どのようにお手伝いできますか？
+----------------
+::1 | 2023-08-09 09:34:27
+Q:hi
+A:こんにちは！どのようにお手伝いできますか？
+----------------
+::1 | 2023-08-09 09:35:27
+Q:hi
+A:こんにちは！どのようにお手伝いできますか？
+----------------
+::1 | 2023-08-09 09:38:40
+Q:hi
+A:こんにちは！どのようにお手伝いできますか？
+----------------
+::1 | 2023-08-09 09:40:09
+Q:hi
+A:こんにちは！どのようにお手伝いできますか？
+----------------
+::1 | 2023-08-09 09:40:39
+Q:hi
+A:こんにちは！どのようにお手伝いできますか？
+----------------
+::1 | 2023-08-09 09:40:52
+Q:hi
+A:こんにちは！どのようにお手伝いできますか？
+----------------
+::1 | 2023-08-09 09:41:42
+Q:hi
+A:こんにちは！どのようにお手伝いできますか？
+----------------
+::1 | 2023-08-09 09:42:42
+Q:hi
+A:こんにちは！どのようにお手伝いできますか？
+----------------
+::1 | 2023-08-09 09:43:01
+Q:hi
+A:こんにちは！どのようにお手伝いできますか？
+----------------
+::1 | 2023-08-09 09:43:18
+Q:hi
+A:こんにちは！どのようにお手伝いできますか？
+----------------
+::1 | 2023-08-09 09:43:58
+Q:hi
+A:
+----------------
+::1 | 2023-08-09 09:44:31
+Q:hi
+A:
+----------------
+::1 | 2023-08-09 09:44:53
+Q:hi
+A:
+----------------
+::1 | 2023-08-09 09:45:23
+Q:hi
+A:こんにちは！どのようにお手伝いできますか？
+----------------
+::1 | 2023-08-09 09:46:27
+Q:hi
+A:
+----------------
+::1 | 2023-08-09 10:03:35
+Q:hi
+A:
+----------------
+::1 | 2023-08-09 10:04:04
+Q:hi
+A:
+----------------
+::1 | 2023-08-09 10:13:07
+Q:hi
+A:こんにちは！どのようにお手伝いできますか？
+----------------{
+  "id": "chatcmpl-7lYuFfcLB455sGXXD86UIpo3tTpki",
+  "object": "chat.completion",
+  "created": 1691569951,
+  "model": "gpt-3.5-turbo-0613",
+  "choices": [
+    {
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "こんにちは！どのようにお手伝いできますか？"
+      },
+      "finish_reason": "stop"
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 41,
+    "completion_tokens": 17,
+    "total_tokens": 58
+  }
+}
+{
+  "id": "chatcmpl-7lYuFfcLB455sGXXD86UIpo3tTpki",
+  "object": "chat.completion",
+  "created": 1691569951,
+  "model": "gpt-3.5-turbo-0613",
+  "choices": [
+    {
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "こんにちは！どのようにお手伝いできますか？"
+      },
+      "finish_reason": "stop"
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 41,
+    "completion_tokens": 17,
+    "total_tokens": 58
+  }
+}
+{
+  "id": "chatcmpl-7lZL7eIGkjqH0C5jpjRZeAk9D0qDm",
+  "object": "chat.completion",
+  "created": 1691571617,
+  "model": "gpt-3.5-turbo-0613",
+  "choices": [
+    {
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "こんにちは！どのようにお手伝いできますか？"
+      },
+      "finish_reason": "stop"
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 41,
+    "completion_tokens": 17,
+    "total_tokens": 58
+  }
+}
+{
+  "id": "chatcmpl-7lZL7eIGkjqH0C5jpjRZeAk9D0qDm",
+  "object": "chat.completion",
+  "created": 1691571617,
+  "model": "gpt-3.5-turbo-0613",
+  "choices": [
+    {
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "こんにちは！どのようにお手伝いできますか？"
+      },
+      "finish_reason": "stop"
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 41,
+    "completion_tokens": 17,
+    "total_tokens": 58
+  }
+}
+----------------------------------------------------------
+{
+  "id": "chatcmpl-7lZLM4kJ0NPfXKXEoN9P612W1l7Pq",
+  "object": "chat.completion",
+  "created": 1691571632,
+  "model": "gpt-3.5-turbo-0613",
+  "choices": [
+    {
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "こんにちは！どのようにお手伝いできますか？"
+      },
+      "finish_reason": "stop"
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 41,
+    "completion_tokens": 17,
+    "total_tokens": 58
+  }
+}
+{
+  "id": "chatcmpl-7lZLM4kJ0NPfXKXEoN9P612W1l7Pq",
+  "object": "chat.completion",
+  "created": 1691571632,
+  "model": "gpt-3.5-turbo-0613",
+  "choices": [
+    {
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "こんにちは！どのようにお手伝いできますか？"
+      },
+      "finish_reason": "stop"
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 41,
+    "completion_tokens": 17,
+    "total_tokens": 58
+  }
+}
+======================data: {"id":"chatcmpl-7lZbZFrVUJRZhUMzKQcMYyrGdchNW","object":"chat.completion.chunk","created":1691572637,"model":"gpt-3.5-turbo-0613","choices":[{"index":0,"delta":{"role":"assistant","content":""},"finish_reason":null}]}
+
+data: {"id":"chatcmpl-7lZbZFrVUJRZhUMzKQcMYyrGdchNW","object":"chat.completion.chunk","created":1691572637,"model":"gpt-3.5-turbo-0613","choices":[{"index":0,"delta":{"content":"こんにちは"},"finish_reason":null}]}
+
+data: {"id":"chatcmpl-7lZbZFrVUJRZhUMzKQcMYyrGdchNW","object":"chat.completion.chunk","created":1691572637,"model":"gpt-3.5-turbo-0613","choices":[{"index":0,"delta":{"content":"！"},"finish_reason":null}]}
+
+data: {"id":"chatcmpl-7lZbZFrVUJRZhUMzKQcMYyrGdchNW","object":"chat.completion.chunk","created":1691572637,"model":"gpt-3.5-turbo-0613","choices":[{"index":0,"delta":{"content":"ど"},"finish_reason":null}]}
+
+data: {"id":"chatcmpl-7lZbZFrVUJRZhUMzKQcMYyrGdchNW","object":"chat.completion.chunk","created":1691572637,"model":"gpt-3.5-turbo-0613","choices":[{"index":0,"delta":{"content":"の"},"finish_reason":null}]}
+
+data: {"id":"chatcmpl-7lZbZFrVUJRZhUMzKQcMYyrGdchNW","object":"chat.completion.chunk","created":1691572637,"model":"gpt-3.5-turbo-0613","choices":[{"index":0,"delta":{"content":"よ"},"finish_reason":null}]}
+
+data: {"id":"chatcmpl-7lZbZFrVUJRZhUMzKQcMYyrGdchNW","object":"chat.completion.chunk","created":1691572637,"model":"gpt-3.5-turbo-0613","choices":[{"index":0,"delta":{"content":"う"},"finish_reason":null}]}
+
+data: {"id":"chatcmpl-7lZbZFrVUJRZhUMzKQcMYyrGdchNW","object":"chat.completion.chunk","created":1691572637,"model":"gpt-3.5-turbo-0613","choices":[{"index":0,"delta":{"content":"に"},"finish_reason":null}]}
+
+data: {"id":"chatcmpl-7lZbZFrVUJRZhUMzKQcMYyrGdchNW","object":"chat.completion.chunk","created":1691572637,"model":"gpt-3.5-turbo-0613","choices":[{"index":0,"delta":{"content":"お"},"finish_reason":null}]}
+
+data: {"id":"chatcmpl-7lZbZFrVUJRZhUMzKQcMYyrGdchNW","object":"chat.completion.chunk","created":1691572637,"model":"gpt-3.5-turbo-0613","choices":[{"index":0,"delta":{"content":"手"},"finish_reason":null}]}
+
+data: {"id":"chatcmpl-7lZbZFrVUJRZhUMzKQcMYyrGdchNW","object":"chat.completion.chunk","created":1691572637,"model":"gpt-3.5-turbo-0613","choices":[{"index":0,"delta":{"content":"伝"},"finish_reason":null}]}
+
+data: {"id":"chatcmpl-7lZbZFrVUJRZhUMzKQcMYyrGdchNW","object":"chat.completion.chunk","created":1691572637,"model":"gpt-3.5-turbo-0613","choices":[{"index":0,"delta":{"content":"い"},"finish_reason":null}]}
+
+data: {"id":"chatcmpl-7lZbZFrVUJRZhUMzKQcMYyrGdchNW","object":"chat.completion.chunk","created":1691572637,"model":"gpt-3.5-turbo-0613","choices":[{"index":0,"delta":{"content":"で"},"finish_reason":null}]}
+
+data: {"id":"chatcmpl-7lZbZFrVUJRZhUMzKQcMYyrGdchNW","object":"chat.completion.chunk","created":1691572637,"model":"gpt-3.5-turbo-0613","choices":[{"index":0,"delta":{"content":"き"},"finish_reason":null}]}
+
+data: {"id":"chatcmpl-7lZbZFrVUJRZhUMzKQcMYyrGdchNW","object":"chat.completion.chunk","created":1691572637,"model":"gpt-3.5-turbo-0613","choices":[{"index":0,"delta":{"content":"ます"},"finish_reason":null}]}
+
+data: {"id":"chatcmpl-7lZbZFrVUJRZhUMzKQcMYyrGdchNW","object":"chat.completion.chunk","created":1691572637,"model":"gpt-3.5-turbo-0613","choices":[{"index":0,"delta":{"content":"か"},"finish_reason":null}]}
+
+data: {"id":"chatcmpl-7lZbZFrVUJRZhUMzKQcMYyrGdchNW","object":"chat.completion.chunk","created":1691572637,"model":"gpt-3.5-turbo-0613","choices":[{"index":0,"delta":{"content":"？"},"finish_reason":null}]}
+
+data: {"id":"chatcmpl-7lZbZFrVUJRZhUMzKQcMYyrGdchNW","object":"chat.completion.chunk","created":1691572637,"model":"gpt-3.5-turbo-0613","choices":[{"index":0,"delta":{},"finish_reason":"stop"}]}
+
+data: [DONE]
+
+data: {"id":"chatcmpl-7lZeOiVq5KRfcTpe7usKQISaetaXZ","object":"chat.completion.chunk","created":1691572812,"model":"gpt-3.5-turbo-0613","choices":[{"index":0,"delta":{"role":"assistant","content":""},"finish_reason":null}]}
+
+data: {"id":"chatcmpl-7lZeOiVq5KRfcTpe7usKQISaetaXZ","object":"chat.completion.chunk","created":1691572812,"model":"gpt-3.5-turbo-0613","choices":[{"index":0,"delta":{"content":"こんにちは"},"finish_reason":null}]}
+
+data: {"id":"chatcmpl-7lZeOiVq5KRfcTpe7usKQISaetaXZ","object":"chat.completion.chunk","created":1691572812,"model":"gpt-3.5-turbo-0613","choices":[{"index":0,"delta":{"content":"！"},"finish_reason":null}]}
+
+data: {"id":"chatcmpl-7lZeOiVq5KRfcTpe7usKQISaetaXZ","object":"chat.completion.chunk","created":1691572812,"model":"gpt-3.5-turbo-0613","choices":[{"index":0,"delta":{"content":"ど"},"finish_reason":null}]}
+
+data: {"id":"chatcmpl-7lZeOiVq5KRfcTpe7usKQISaetaXZ","object":"chat.completion.chunk","created":1691572812,"model":"gpt-3.5-turbo-0613","choices":[{"index":0,"delta":{"content":"の"},"finish_reason":null}]}
+
+data: {"id":"chatcmpl-7lZeOiVq5KRfcTpe7usKQISaetaXZ","object":"chat.completion.chunk","created":1691572812,"model":"gpt-3.5-turbo-0613","choices":[{"index":0,"delta":{"content":"よ"},"finish_reason":null}]}
+
+data: {"id":"chatcmpl-7lZeOiVq5KRfcTpe7usKQISaetaXZ","object":"chat.completion.chunk","created":1691572812,"model":"gpt-3.5-turbo-0613","choices":[{"index":0,"delta":{"content":"う"},"finish_reason":null}]}
+
+data: {"id":"chatcmpl-7lZeOiVq5KRfcTpe7usKQISaetaXZ","object":"chat.completion.chunk","created":1691572812,"model":"gpt-3.5-turbo-0613","choices":[{"index":0,"delta":{"content":"に"},"finish_reason":null}]}
+
+data: {"id":"chatcmpl-7lZeOiVq5KRfcTpe7usKQISaetaXZ","object":"chat.completion.chunk","created":1691572812,"model":"gpt-3.5-turbo-0613","choices":[{"index":0,"delta":{"content":"お"},"finish_reason":null}]}
+
+data: {"id":"chatcmpl-7lZeOiVq5KRfcTpe7usKQISaetaXZ","object":"chat.completion.chunk","created":1691572812,"model":"gpt-3.5-turbo-0613","choices":[{"index":0,"delta":{"content":"手"},"finish_reason":null}]}
+
+data: {"id":"chatcmpl-7lZeOiVq5KRfcTpe7usKQISaetaXZ","object":"chat.completion.chunk","created":1691572812,"model":"gpt-3.5-turbo-0613","choices":[{"index":0,"delta":{"content":"伝"},"finish_reason":null}]}
+
+data: {"id":"chatcmpl-7lZeOiVq5KRfcTpe7usKQISaetaXZ","object":"chat.completion.chunk","created":1691572812,"model":"gpt-3.5-turbo-0613","choices":[{"index":0,"delta":{"content":"い"},"finish_reason":null}]}
+
+data: {"id":"chatcmpl-7lZeOiVq5KRfcTpe7usKQISaetaXZ","object":"chat.completion.chunk","created":1691572812,"model":"gpt-3.5-turbo-0613","choices":[{"index":0,"delta":{"content":"で"},"finish_reason":null}]}
+
+data: {"id":"chatcmpl-7lZeOiVq5KRfcTpe7usKQISaetaXZ","object":"chat.completion.chunk","created":1691572812,"model":"gpt-3.5-turbo-0613","choices":[{"index":0,"delta":{"content":"き"},"finish_reason":null}]}
+
+data: {"id":"chatcmpl-7lZeOiVq5KRfcTpe7usKQISaetaXZ","object":"chat.completion.chunk","created":1691572812,"model":"gpt-3.5-turbo-0613","choices":[{"index":0,"delta":{"content":"ます"},"finish_reason":null}]}
+
+data: {"id":"chatcmpl-7lZeOiVq5KRfcTpe7usKQISaetaXZ","object":"chat.completion.chunk","created":1691572812,"model":"gpt-3.5-turbo-0613","choices":[{"index":0,"delta":{"content":"か"},"finish_reason":null}]}
+
+data: {"id":"chatcmpl-7lZeOiVq5KRfcTpe7usKQISaetaXZ","object":"chat.completion.chunk","created":1691572812,"model":"gpt-3.5-turbo-0613","choices":[{"index":0,"delta":{"content":"？"},"finish_reason":null}]}
+
+data: {"id":"chatcmpl-7lZeOiVq5KRfcTpe7usKQISaetaXZ","object":"chat.completion.chunk","created":1691572812,"model":"gpt-3.5-turbo-0613","choices":[{"index":0,"delta":{},"finish_reason":"stop"}]}
+
+data: [DONE]data: {"id":"chatcmpl-7lZwlEq8gVm8BQ3ukT5Y7MfryoytR","object":"chat.completion.chunk","created":1691573951,"model":"gpt-3.5-turbo-0613","choices":[{"index":0,"delta":{"role":"assistant","content":""},"finish_reason":null}]}
+
+data: {"id":"chatcmpl-7lZwlEq8gVm8BQ3ukT5Y7MfryoytR","object":"chat.completion.chunk","created":1691573951,"model":"gpt-3.5-turbo-0613","choices":[{"index":0,"delta":{"content":"こんにちは"},"finish_reason":null}]}
+
+data: {"id":"chatcmpl-7lZwlEq8gVm8BQ3ukT5Y7MfryoytR","object":"chat.completion.chunk","created":1691573951,"model":"gpt-3.5-turbo-0613","choices":[{"index":0,"delta":{"content":"！"},"finish_reason":null}]}
+
+data: {"id":"chatcmpl-7lZwlEq8gVm8BQ3ukT5Y7MfryoytR","object":"chat.completion.chunk","created":1691573951,"model":"gpt-3.5-turbo-0613","choices":[{"index":0,"delta":{"content":"ど"},"finish_reason":null}]}
+
+data: {"id":"chatcmpl-7lZwlEq8gVm8BQ3ukT5Y7MfryoytR","object":"chat.completion.chunk","created":1691573951,"model":"gpt-3.5-turbo-0613","choices":[{"index":0,"delta":{"content":"の"},"finish_reason":null}]}
+
+data: {"id":"chatcmpl-7lZwlEq8gVm8BQ3ukT5Y7MfryoytR","object":"chat.completion.chunk","created":1691573951,"model":"gpt-3.5-turbo-0613","choices":[{"index":0,"delta":{"content":"よ"},"finish_reason":null}]}
+
+data: {"id":"chatcmpl-7lZwlEq8gVm8BQ3ukT5Y7MfryoytR","object":"chat.completion.chunk","created":1691573951,"model":"gpt-3.5-turbo-0613","choices":[{"index":0,"delta":{"content":"う"},"finish_reason":null}]}
+
+data: {"id":"chatcmpl-7lZwlEq8gVm8BQ3ukT5Y7MfryoytR","object":"chat.completion.chunk","created":1691573951,"model":"gpt-3.5-turbo-0613","choices":[{"index":0,"delta":{"content":"に"},"finish_reason":null}]}
+
+data: {"id":"chatcmpl-7lZwlEq8gVm8BQ3ukT5Y7MfryoytR","object":"chat.completion.chunk","created":1691573951,"model":"gpt-3.5-turbo-0613","choices":[{"index":0,"delta":{"content":"お"},"finish_reason":null}]}
+
+data: {"id":"chatcmpl-7lZwlEq8gVm8BQ3ukT5Y7MfryoytR","object":"chat.completion.chunk","created":1691573951,"model":"gpt-3.5-turbo-0613","choices":[{"index":0,"delta":{"content":"手"},"finish_reason":null}]}
+
+data: {"id":"chatcmpl-7lZwlEq8gVm8BQ3ukT5Y7MfryoytR","object":"chat.completion.chunk","created":1691573951,"model":"gpt-3.5-turbo-0613","choices":[{"index":0,"delta":{"content":"伝"},"finish_reason":null}]}
+
+data: {"id":"chatcmpl-7lZwlEq8gVm8BQ3ukT5Y7MfryoytR","object":"chat.completion.chunk","created":1691573951,"model":"gpt-3.5-turbo-0613","choices":[{"index":0,"delta":{"content":"い"},"finish_reason":null}]}
+
+data: {"id":"chatcmpl-7lZwlEq8gVm8BQ3ukT5Y7MfryoytR","object":"chat.completion.chunk","created":1691573951,"model":"gpt-3.5-turbo-0613","choices":[{"index":0,"delta":{"content":"で"},"finish_reason":null}]}
+
+data: {"id":"chatcmpl-7lZwlEq8gVm8BQ3ukT5Y7MfryoytR","object":"chat.completion.chunk","created":1691573951,"model":"gpt-3.5-turbo-0613","choices":[{"index":0,"delta":{"content":"き"},"finish_reason":null}]}
+
+data: {"id":"chatcmpl-7lZwlEq8gVm8BQ3ukT5Y7MfryoytR","object":"chat.completion.chunk","created":1691573951,"model":"gpt-3.5-turbo-0613","choices":[{"index":0,"delta":{"content":"ます"},"finish_reason":null}]}
+
+data: {"id":"chatcmpl-7lZwlEq8gVm8BQ3ukT5Y7MfryoytR","object":"chat.completion.chunk","created":1691573951,"model":"gpt-3.5-turbo-0613","choices":[{"index":0,"delta":{"content":"か"},"finish_reason":null}]}
+
+data: {"id":"chatcmpl-7lZwlEq8gVm8BQ3ukT5Y7MfryoytR","object":"chat.completion.chunk","created":1691573951,"model":"gpt-3.5-turbo-0613","choices":[{"index":0,"delta":{"content":"？"},"finish_reason":null}]}
+
+data: {"id":"chatcmpl-7lZwlEq8gVm8BQ3ukT5Y7MfryoytR","object":"chat.completion.chunk","created":1691573951,"model":"gpt-3.5-turbo-0613","choices":[{"index":0,"delta":{},"finish_reason":"stop"}]}
+
+data: [DONE]
+
