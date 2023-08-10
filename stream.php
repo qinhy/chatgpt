@@ -73,18 +73,20 @@ $callback = function ($ch, $data) {
     } else {
         $responsedata .= $data;
         $complete = json_decode($responsedata, true); 
+        $complete1 = json_decode($data, true); 
         if($complete && isset($complete['choices'][0]['message']['content'])){
-            $datatmp = $complete['choices'][0]['message']['content'];
-            $temp = 'data: {"id":"","object":"","created":0,"model":"","choices":[{"index":0,"delta":{"content":"'.$datatmp;
+            $datatmp = base64_encode($complete['choices'][0]['message']['content']);
+            $temp = '{"id":"","object":"","created":0,"model":"","choices":[{"index":0,"delta":{"content":"'.$datatmp;
             $datatmp =  $temp.'"},"finish_reason":"stop"}]}';
-            echo base64_encode($datatmp)."\n\n";
-            echo 'data: '.base64_encode("[DONE]")."\n\n";
+            echo 'data: '.$datatmp."\n\n";
+            echo 'data: [DONE]\n\n";
         }
-        else{
-            echo base64_encode($data)."\n\n";;
-            $myfile = fopen(__DIR__ . "/chatlog.php", "a") or die("Writing file failed.");
-            fwrite($myfile, $data);
-            fclose($myfile);
+        else if($complete1 && isset($complete1['choices'][0]['delta']['content'])){
+            $complete1['choices'][0]['message']['content'] = base64_encode($complete1['choices'][0]['message']['content']);
+            echo 'data: '.json_encode($complete1)."\n\n";
+            //$myfile = fopen(__DIR__ . "/chatlog.php", "a") or die("Writing file failed.");
+            //fwrite($myfile, $data);
+            //fclose($myfile);
         }
         flush();
     }
