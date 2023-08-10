@@ -243,6 +243,7 @@ $(document).ready(function () {
                 return;
             }
             es.onmessage = function (event) {
+                event.data = atob(event.data);
                 if (isstarted) {
                     layer.close(loading);
                     $("#kw-target").val("少々お待ちください…");
