@@ -74,14 +74,14 @@ $callback = function ($ch, $data) {
         $responsedata .= $data;
         $complete = json_decode($responsedata, true); 
         if($complete && isset($complete['choices'][0]['message']['content'])){
-            $data = $complete['choices'][0]['message']['content'];
-            $temp = 'data: {"id":"","object":"","created":0,"model":"","choices":[{"index":0,"delta":{"content":"'.$data;
-            $data =  $temp.'"},"finish_reason":"stop"}]}'."\n\n";
-            echo $data;
-            echo 'data: [DONE]'."\n\n";
+            $datatmp = $complete['choices'][0]['message']['content'];
+            $temp = 'data: {"id":"","object":"","created":0,"model":"","choices":[{"index":0,"delta":{"content":"'.$datatmp;
+            $datatmp =  $temp.'"},"finish_reason":"stop"}]}';
+            echo base64_encode($datatmp)."\n\n";
+            echo 'data: '.base64_encode("[DONE]")."\n\n";
         }
         else{
-            echo $data;
+            echo base64_encode($data)."\n\n";;
             $myfile = fopen(__DIR__ . "/chatlog.php", "a") or die("Writing file failed.");
             fwrite($myfile, $data);
             fclose($myfile);
