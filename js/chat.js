@@ -311,14 +311,14 @@ $(document).ready(function () {
                         document.getElementById("article-wrapper").scrollTop = 100000;
                     }, 30);
                 }
-                if (atob(event.data) == "[DONE]") {
+                if (decodeURIComponent(escape(atob(event.data))) == "[DONE]") {
                     isalltext = true;
                     contextarray.push([prompt, alltext]);
                     contextarray = contextarray.slice(-5); //只保留最近5次对话作为上下文,以免超过最大tokens限制
                     es.close();
                     return;
                 }
-                var json = eval("(" + atob(event.data) + ")");
+                var json = eval("(" + decodeURIComponent(escape(atob(event.data))) + ")");
                 if (json.choices[0].delta.hasOwnProperty("content")) {
                     if (alltext == "") {
                         alltext = json.choices[0].delta.content.replace(/^\n+/, ''); //去掉回复消息中偶尔开头就存在的连续换行符
