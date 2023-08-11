@@ -137,7 +137,7 @@ $(document).ready(function () {
 
     $("#ai-btn").click(function () {
         if ($("#kw-target").is(':disabled')) {
-            clearInterval(timer);
+            // clearInterval(timer);
             $("#kw-target").val("");
             $("#kw-target").attr("disabled", false);
             autoresize();
@@ -200,10 +200,7 @@ $(document).ready(function () {
         }
         function streaming() {
             var es = new EventSource("stream.php");
-            console.log(es)
-            var isstarted = true;
             var alltext = "";
-            var isalltext = false;
             es.onerror = function (event) {
                 layer.close(loading);
                 var errcode = getCookie("errcode");
@@ -232,101 +229,69 @@ $(document).ready(function () {
                     case "model_overloaded":
                         layer.msg("OpenAIモデルが過負荷、もう一度リクエストを行ってください");
                         break;
-                    case null:
-                        layer.msg("OpenAIサーバーへのアクセスタイムアウトまたは未知のエラータイプ");
-                        break;
-                    default:
-                        layer.msg("OpenAIサーバーの故障、エラータイプ:" + errcode);
+                    // case null:
+                    //     layer.msg("OpenAIサーバーへのアクセスタイムアウトまたは未知のエラータイプ");
+                    //     break;
+                    // default:
+                    //     layer.msg("OpenAIサーバーの故障、エラータイプ:" + errcode);
                 }
                 es.close();
                 if (!isMobile()) $("#kw-target").focus();
                 return;
             }
-            es.onmessage = function (event) {
-                if (isstarted) {
-                    layer.close(loading);
-                    $("#kw-target").val("少々お待ちください…");
-                    $("#kw-target").attr("disabled", true);
-                    autoresize();
-                    $("#ai-btn").html('<i class="iconfont icon-wuguan"></i>中止');
-                    layer.msg("処理完了！");
-                    isstarted = false;
-                    answer = randomString(16);
-                    $("#article-wrapper").append('<li class="article-title" id="q' + answer + '"><pre></pre></li>');
-                    for (var j = 0; j < prompt.length; j++) {
-                        $("#q" + answer).children('pre').text($("#q" + answer).children('pre').text() + prompt[j]);
+            
+            var finish_reason = "";
+            const queue_recieve = [];
+            const answer = randomString(16);
+            const init = ()=>{
+                $("#kw-target").val("少々お待ちください…");
+                $("#kw-target").attr("disabled", true);
+                autoresize();
+                $("#ai-btn").html('<i class="iconfont icon-wuguan"></i>中止');
+                // layer.msg("処理完了！");
+                $("#article-wrapper").append('<li class="article-title" id="q' + answer + '"><pre></pre></li>');
+                for (var j = 0; j < prompt.length; j++) {$("#q" + answer).children('pre').text($("#q" + answer).children('pre').text() + prompt[j]);}
+                $("#article-wrapper").append('<li class="article-content" id="' + answer + '"></li>');
+            }
+            const show_str_onebyone = setInterval(()=>{
+                if(queue_recieve.length==0){
+                    if(finish_reason == "stop"){
+                        $("#" + answer).html(mdHtml.render(alltext));
+                        clearInterval(show_str_onebyone);
                     }
-                    $("#article-wrapper").append('<li class="article-content" id="' + answer + '"></li>');
-                    let str_ = '';
-                    let i = 0;
-                    let strforcode = '';
-                    timer = setInterval(() => {
-                        let newalltext = alltext;
-                        let islastletter = false;
-                        //有时服务器错误地返回\\n作为换行符,尤其是包含上下文的提问时,这行代码可以处理一下。
-                        if (newalltext.split("\n").length == 1) {
-                            newalltext = newalltext.replace(/\\n/g, '\n');
-                        }
-                        if (str_.length < (newalltext.length - 3)) {
-                            str_ += newalltext[i++];
-                            strforcode = str_;
-                            if ((str_.split("```").length % 2) == 0) {
-                                strforcode += "\n```\n";
-                            } else {
-                                strforcode += "_";
-                            }
-                        } else {
-                            if (isalltext) {
-                                clearInterval(timer);
-                                strforcode = newalltext;
-                                islastletter = true;
-                                $("#kw-target").val("");
-                                $("#kw-target").attr("disabled", false);
-                                autoresize();
-                                $("#ai-btn").html('<i class="iconfont icon-wuguan"></i>送信');
-                                if (!isMobile()) $("#kw-target").focus();
-                            }
-                        }
-                        //let arr = strforcode.split("```");
-                        //for (var j = 0; j <= arr.length; j++) {
-                        //    if (j % 2 == 0) {
-                        //        arr[j] = arr[j].replace(/\n\n/g, '\n');
-                        //        arr[j] = arr[j].replace(/\n/g, '\n\n');
-                        //        arr[j] = arr[j].replace(/\t/g, '\\t');
-                        //        arr[j] = arr[j].replace(/\n {4}/g, '\n\\t');
-                        //        arr[j] = $("<div>").text(arr[j]).html();
-                        //    }
-                        //}
-
-                        //var converter = new showdown.Converter();
-                        //newalltext = converter.makeHtml(arr.join("```"));
-                        newalltext = mdHtml.render(strforcode);
-                        //newalltext = newalltext.replace(/\\t/g, '&nbsp;&nbsp;&nbsp;&nbsp;');
-                        $("#" + answer).html(newalltext);
-                        if (islastletter) MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
-                        //if (document.querySelector("[id='" + answer + "']" + " pre code")) document.querySelectorAll("[id='" + answer + "']" + " pre code").forEach(el => { hljs.highlightElement(el); });
-                        $("#" + answer + " pre code").each(function () {
-                            $(this).html("<button onclick='copycode(this);' class='codebutton'>コピー</button>" + $(this).html());
-                        });
-                        document.getElementById("article-wrapper").scrollTop = 100000;
-                    }, 30);
-                }
-                if (event.data == "[DONE]") {
-                    isalltext = true;
-                    contextarray.push([prompt, alltext]);
-                    contextarray = contextarray.slice(-5); //只保留最近5次对话作为上下文,以免超过最大tokens限制
-                    es.close();
                     return;
                 }
-                var json = eval("(" + event.data + ")");
-                if (json.choices[0].delta.hasOwnProperty("content")) {
-                    json.choices[0].delta.content = decodeURIComponent(escape(atob(json.choices[0].delta.content)))
-                    if (alltext == "") {
-                        alltext = json.choices[0].delta.content.replace(/^\n+/, ''); //去掉回复消息中偶尔开头就存在的连续换行符
-                    } else {
-                        alltext += json.choices[0].delta.content;
-                    }
-                }
+                alltext += queue_recieve.shift();
+                // alltext += json.choices[0].delta.content.replace(/^\n+/, '');
+                $("#" + answer).html(mdHtml.render(alltext+'_'));
+            },30);
+            init();
+            es.onmessage = function (event) {                
+                layer.close(loading);
+                var json = JSON.parse(event.data);
+                var first_chioce = json.choices[0];
+
+                var first_content = "";                 
+                if (first_chioce.hasOwnProperty("delta")) {first_content = first_chioce.delta.content;}
+                else if (first_chioce.hasOwnProperty("message")) {first_content = first_chioce.message.content;}
+
+                finish_reason = first_chioce.finish_reason;            
+                if(first_content)first_content = decodeURIComponent(escape(atob(first_content)));  
+                else {first_content=""}
+                queue_recieve.push(...first_content.replace(/^\n+/, ''));                        
+                
+                if (finish_reason == "stop") {
+                    contextarray.push([prompt, alltext]);
+                    contextarray = contextarray.slice(-5); //只保留最近5次对话作为上下文,以免超过最大tokens限制
+                    $("#kw-target").val("");
+                    $("#kw-target").attr("disabled", false);
+                    autoresize();
+                    $("#ai-btn").html('<i class="iconfont icon-wuguan"></i>送信');
+                    if (!isMobile()) $("#kw-target").focus();
+                    MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
+                    es.close();
+                }               
+                document.getElementById("article-wrapper").scrollTop = 100000;
             }
         }
 

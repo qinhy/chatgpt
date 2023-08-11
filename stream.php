@@ -8,30 +8,12 @@ $postData = $_SESSION['data'];
 $postData_j = json_decode($postData);
 $responsedata = "";
 $ch = curl_init();
-$OPENAI_API_KEY = getenv('OPENAI_API_KEY');
 
-//下面这段代码是从文件中获取apikey，采用轮询方式调用。配置apikey请访问key.php
-$content = "<?php header('HTTP/1.1 404 Not Found');exit; ?>\n";
-// $line = 0;
-// $handle = fopen(__DIR__ . "/apikey.php", "r") or die("Writing file failed.");
-// if ($handle) {
-//     while (($buffer = fgets($handle)) !== false) {
-//         $line++;
-//         if ($line == 2) {
-//             $OPENAI_API_KEY = str_replace("\n", "", $buffer);
-//         }
-//         if ($line > 2) {
-//             $content .= $buffer;
-//         }
-//     }
-//     fclose($handle);
-// }
-// $content .= $OPENAI_API_KEY . "\n";
-// $handle = fopen(__DIR__ . "/apikey.php", "w") or die("Writing file failed.");
-// if ($handle) {
-//     fwrite($handle, $content);
-//     fclose($handle);
-// }
+$OPENAI_API_KEY = 'sk-';//getenv('OPENAI_API_KEY');]
+
+function sendmsg($msg) {    
+    echo "data: ".$msg."\n\n";
+} 
 
 //如果首页开启了输入自定义apikey，则采用用户输入的apikey
 if (isset($_SESSION['key'])) {
@@ -49,46 +31,56 @@ setcookie("errmsg", "");
 
 $callback = function ($ch, $data) {
     global $responsedata;
+    // error_log('sssssssssssssssssssssssssss'.$data); 
+    $data_arr = explode('data: ',$data);
+    $responsedata .= $data;
+    if(json_decode($responsedata,true)){
+        $data_arr = [$responsedata];
+    }
 
-    $complete = json_decode($data);    
-    if (isset($complete->error)) {
-        setcookie("errcode", $complete->error->code);
-        setcookie("errmsg", $data);
-        if (strpos($complete->error->message, "Rate limit reached") === 0) { //访问频率超限错误返回的code为空，特殊处理一下
-            setcookie("errcode", "rate_limit_reached");
+    for($i = 0; $i < count($data_arr); ++$i) {
+        $complete=json_decode($data_arr[$i],true);
+        if($complete==null)continue;      
+        // if($complete==null)throw new Exception('json_decode at data is null!');
+
+        if (isset($complete['error'])) {
+            setcookie("errcode", $complete['error']['code']);
+            setcookie("errmsg", $data);
+            if (strpos($complete['error']['message'], "Rate limit reached") === 0) { //访问频率超限错误返回的code为空，特殊处理一下
+                setcookie("errcode", "rate_limit_reached");
+            }
+            if (strpos($complete['error']['message'], "Your access was terminated") === 0) { //违规使用，被封禁，特殊处理一下
+                setcookie("errcode", "access_terminated");
+            }
+            if (strpos($complete['error']['message'], "You didn't provide an API key") === 0) { //未提供API-KEY
+                setcookie("errcode", "no_api_key");
+            }
+            if (strpos($complete['error']['message'], "You exceeded your current quota") === 0) { //API-KEY余额不足
+                setcookie("errcode", "insufficient_quota");
+            }
+            if (strpos($complete['error']['message'], "That model is currently overloaded") === 0) { //OpenAI模型超负荷
+                setcookie("errcode", "model_overloaded");
+            }
+            $responsedata = $data;
+        } else {
+            $datatmp = $data_arr[$i];
+            if(isset($complete['choices'][0]['delta']['content'])){
+                $complete['choices'][0]['delta']['content'] = base64_encode($complete['choices'][0]['delta']['content']);  
+                $datatmp = json_encode($complete, true); 
+            } 
+            else{
+                $complete1 = json_decode($responsedata, true); 
+                if($complete1 && isset($complete1['choices'][0]['message']['content'])){
+                    // $datatmp = base64_encode($complete1['choices'][0]['message']['content']);
+                    // $temp = '{"id":"","object":"","created":0,"model":"","choices":[{"index":0,"delta":{"content":"'.$datatmp;
+                    // $datatmp =  $temp.'"},"finish_reason":"stop"}]}';
+                    $complete1['choices'][0]['message']['content'] = base64_encode($complete1['choices'][0]['message']['content']);
+                    $datatmp = json_encode($complete1);
+                }
+            }
+            sendmsg($datatmp);
+            flush();
         }
-        if (strpos($complete->error->message, "Your access was terminated") === 0) { //违规使用，被封禁，特殊处理一下
-            setcookie("errcode", "access_terminated");
-        }
-        if (strpos($complete->error->message, "You didn't provide an API key") === 0) { //未提供API-KEY
-            setcookie("errcode", "no_api_key");
-        }
-        if (strpos($complete->error->message, "You exceeded your current quota") === 0) { //API-KEY余额不足
-            setcookie("errcode", "insufficient_quota");
-        }
-        if (strpos($complete->error->message, "That model is currently overloaded") === 0) { //OpenAI模型超负荷
-            setcookie("errcode", "model_overloaded");
-        }
-        $responsedata = $data;
-    } else {
-        $responsedata .= $data;
-        $complete = json_decode($responsedata, true); 
-        $complete1 = json_decode($data, true); 
-        if($complete && isset($complete['choices'][0]['message']['content'])){
-            $datatmp = base64_encode($complete['choices'][0]['message']['content']);
-            $temp = '{"id":"","object":"","created":0,"model":"","choices":[{"index":0,"delta":{"content":"'.$datatmp;
-            $datatmp =  $temp.'"},"finish_reason":"stop"}]}';
-            echo 'data: '.$datatmp."\n\n";
-            echo 'data: [DONE]\n\n';
-        }
-        else if($complete1 && isset($complete1['choices'][0]['delta']['content'])){
-            $complete1['choices'][0]['message']['content'] = base64_encode($complete1['choices'][0]['message']['content']);
-            echo 'data: '.json_encode($complete1)."\n\n";
-            //$myfile = fopen(__DIR__ . "/chatlog.php", "a") or die("Writing file failed.");
-            //fwrite($myfile, $data);
-            //fclose($myfile);
-        }
-        flush();
     }
     return strlen($data);
 };
