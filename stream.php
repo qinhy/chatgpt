@@ -79,7 +79,7 @@ $callback = function ($ch, $data) {
             $temp = '{"id":"","object":"","created":0,"model":"","choices":[{"index":0,"delta":{"content":"'.$datatmp;
             $datatmp =  $temp.'"},"finish_reason":"stop"}]}';
             echo 'data: '.$datatmp."\n\n";
-            echo 'data: [DONE]\n\n";
+            echo 'data: [DONE]\n\n';
         }
         else if($complete1 && isset($complete1['choices'][0]['delta']['content'])){
             $complete1['choices'][0]['message']['content'] = base64_encode($complete1['choices'][0]['message']['content']);
